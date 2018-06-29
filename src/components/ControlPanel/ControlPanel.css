@@ -1,0 +1,61 @@
+.hero
+{
+ height: 64;
+ width: 85px;
+ transition:all 0.2s;
+ position:relative;
+ display:block;
+ float:left;
+ border:3px solid black;
+}
+
+
+.hero:hover
+{
+ position: relative;
+ transform:scale(1.5);
+ transition:all 0.2s;
+ top:-2px;
+ left:-2px;
+ z-index: 3;
+ border: 3px solid white;
+}
+
+.hero:active	
+{
+ position: relative;
+ transform:scale(1.5);
+ transition:all 0.2s;
+ top:-2px;
+ left:-2px;
+ z-index: 3;
+ border: 3px solid grey;
+}
+
+
+.strength 
+{
+ background-color:rgba(255,0,0,0.3);
+ text-align: left;
+ margin: auto;
+ display:inline-block;
+ color:white;
+}
+
+.agility 
+{
+ background-color:rgba(0,255,0,0.3);
+ text-align: left;
+ margin: auto;
+ display:inline-block;
+ color:white;
+}
+
+.intelligence 
+{
+ background-color:rgba(0,0,255,0.3);
+ text-align: left;
+ margin: auto;
+ display:inline-block;
+ color:white;
+}
