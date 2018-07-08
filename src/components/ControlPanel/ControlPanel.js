@@ -1,54 +1,34 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import axios from 'axios';
 import classes from './ControlPanel.css';
+import * as actions from '../../store/actions/index';
 
 class ControlPanel extends Component
 {
- state = {
-    fetchedHeroes: []
- }
  
  componentDidMount()
  {
-  axios.get("https://api.opendota.com/api/heroStats")
-  .then(response => {
-      console.log(response.data)
-      var sortedData = response.data.sort((a,b) => {
-        if (a.localized_name < b.localized_name)
-        {
-         return -1;
-        }
-        if (a.localized_name > b.localized_name)
-        {  
-         return 1;
-        }
-        return 0;
-      })
-     this.setState({fetchedHeroes: response.data})
-  }).catch(error =>{
-      console.log(error)
-  });
-
+  this.props.onFetchHeroesInit();
  }
-
 
 
  render()
  {
-    
-  const imagesStr = this.state.fetchedHeroes.map(image =>{  
-      if(image.primary_attr === 'str')
-      {return (<img className={classes.hero} key={image.id} src={'http://cdn.dota2.com/'+ image.img}/>)}})
 
-  const imagesAgi = this.state.fetchedHeroes.map(image =>{  
+  const imagesStr = this.props.fetchedHeroes.map(image =>{  
+      if(image.primary_attr === 'str')
+      {return (<img id={image.id} onClick={this.props.clicked} className={classes.hero} key={image.id} src={'http://cdn.dota2.com/'+ image.img}/>)}})
+
+  const imagesAgi = this.props.fetchedHeroes.map(image =>{  
         if(image.primary_attr === 'agi')
-        {return (<img className={classes.hero} key={image.id} src={'http://cdn.dota2.com/'+ image.img}/>)}})
+        {return (<img id={image.id}  onClick={this.props.clicked} className={classes.hero} key={image.id} src={'http://cdn.dota2.com/'+ image.img}/>)}})
         
-  const imagesInt = this.state.fetchedHeroes.map(image =>{  
+  const imagesInt = this.props.fetchedHeroes.map(image =>{  
             if(image.primary_attr === 'int')
-            {return (<img className={classes.hero} key={image.id} src={'http://cdn.dota2.com/'+ image.img}/>)}})
+            {return (<img id={image.id}  onClick={this.props.clicked} className={classes.hero} key={image.id} src={'http://cdn.dota2.com/'+ image.img}/>)}})
    
-   return (<div>
+   return (<div className={classes.ControlPanel}>
     <div className={classes.strength}><p>Strength</p>
     {imagesStr}
     </div>
@@ -65,4 +45,20 @@ class ControlPanel extends Component
  }
 }
 
-export default ControlPanel;
+const mapStateToProps =  state =>
+{
+  return {
+  fetchedHeroes: state.heroGuesser.fetchedHeroes,
+  loading: state.heroGuesser.loading,
+  error: state.heroGuesser.error
+  };
+}
+
+const mapDispatchToProps = dispatch =>
+{
+  return {
+    onFetchHeroesInit: () => dispatch(actions.fetchHeroes())
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(ControlPanel);

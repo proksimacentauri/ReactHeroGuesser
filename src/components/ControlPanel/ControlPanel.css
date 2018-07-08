@@ -1,14 +1,22 @@
 .hero
 {
  height: 64;
- width: 85px;
+ width: 64px;
  transition:all 0.2s;
  position:relative;
+ margin: auto;
  display:block;
  float:left;
- border:3px solid black;
+ border-radius: 2%;
+ border:3px solid transparent;
 }
 
+.ControlPanel {
+    background-color: rgb(95, 172, 208);
+    margin: auto;
+    height: 600px;
+    width: 80%;
+}
 
 .hero:hover
 {
@@ -29,13 +37,13 @@
  top:-2px;
  left:-2px;
  z-index: 3;
- border: 3px solid grey;
+ border: 3px solid rgb(11, 32, 37);
 }
 
 
 .strength 
 {
- background-color:rgba(255,0,0,0.3);
+    /* background-color:rgba(255,0,0,0.3);*/ 
  text-align: left;
  margin: auto;
  display:inline-block;
@@ -44,7 +52,7 @@
 
 .agility 
 {
- background-color:rgba(0,255,0,0.3);
+ /*background-color:rgba(0,255,0,0.3);*/
  text-align: left;
  margin: auto;
  display:inline-block;
@@ -53,7 +61,7 @@
 
 .intelligence 
 {
- background-color:rgba(0,0,255,0.3);
+ /* background-color:rgba(0,0,255,0.3);*/
  text-align: left;
  margin: auto;
  display:inline-block;
