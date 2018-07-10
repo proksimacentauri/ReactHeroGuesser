@@ -1,7 +1,6 @@
 import {put,take,call} from 'redux-saga/effects';
 import axios from 'axios';
 import * as actions from '../actions/index';    
-import { constants } from 'zlib';
 import * as actionTypes from '../actions/actionTypes';
 
 export function* fetchHeroesSaga(action)
@@ -71,5 +70,20 @@ export function* fetchPublicMatchSaga(action,matchid)
  catch(error)
  {
   yield put(actions.fetchPublicMatchFail(error));
+ }
+}
+
+
+export function* fetchItemsSaga(action)
+{
+ yield put(actions.fetchItemsStart());
+ try {
+  const response = yield axios.get("http://api.steampowered.com/IEconDOTA2_570/GetGameItems/v0001/?key=7C8B37F899203B917EA9CA4607F86FBE&format=JSON&language=en");
+  console.log(response.data);
+  yield put(actions.fetchItemsSuccess(response.data));
+ }
+ catch (error)
+ {
+  yield put(actions.fetchItemsFail(error));
  }
 }

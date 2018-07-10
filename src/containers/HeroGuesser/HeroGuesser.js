@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import Aux from '../../hoc/Aux/Aux';
 import ControlPanel from '../../components/ControlPanel/ControlPanel';
 import * as actions from '../../store/actions/index';
+import items from '../../assets/JSON/items.json';
+
+import classes from './HeroGuesser.css';
 
 export class HeroGuesser extends Component
 {
@@ -11,6 +14,8 @@ export class HeroGuesser extends Component
  componentDidMount()
  {
   this.props.onFetchPublicMatchesInit();
+  this.props.onFetchItemsInit();
+  console.log(items.itemdata);
  }
 
 
@@ -24,10 +29,34 @@ handleClick = (e) => {
   }
 }
 
+transformItemsToIcons = (data,array) =>
+{
+ const imgLink = "http://cdn.dota2.com/apps/dota2/images/items/";
+ let arrayOfItemImages = [];
+ for(let i = 0; i < array.length; i++)
+ {
+  for (let a in data)
+  {
+   if(array[i] == data[a].id)
+   {
+    let fullImgLink = imgLink + data[a].img;
+
+    if(data[a].dname == "Kaya")
+    {
+     fullImgLink = imgLink + "trident_lg.png?3";
+    }
+     arrayOfItemImages.push({url: fullImgLink, id:i});
+     console.log(arrayOfItemImages);
+  }
+}
+}
+ return arrayOfItemImages;
+}
+
  render ()
  {
    let duration = null;
-
+   let itemImgs = [];
    if(this.props.fetchedPublicMatch !== null)
    {
      const durationInMinutes = Math.floor(this.props.fetchedPublicMatch.duration/60);
@@ -39,10 +68,29 @@ handleClick = (e) => {
      duration = durationInMinutes.toString() + ':' + durationSeconds.toString();
 
    }
+
+   if(this.props.randomedPlayer !== null)
+   {
+    let arrOfItems = [];
+    arrOfItems.push(this.props.randomedPlayer.item_0);
+    arrOfItems.push(this.props.randomedPlayer.item_1);
+    arrOfItems.push(this.props.randomedPlayer.item_2);
+    arrOfItems.push(this.props.randomedPlayer.item_3);
+    arrOfItems.push(this.props.randomedPlayer.item_4);
+    arrOfItems.push(this.props.randomedPlayer.item_5);
+    console.log(arrOfItems);
+    itemImgs = this.transformItemsToIcons(items.itemdata,arrOfItems);
+    console.log(itemImgs);
+   }
    console.log(this.props.fetchedPublicMatch, this.props.randomedPlayer);
    return (
        <Aux>
-         <GuessedHero duration={duration}/>
+         <GuessedHero duration={duration} theMatchId={this.props.fetchedMatchId}/>
+         <div className={classes.itemDiv}>
+         {itemImgs.map(itemImg => (
+           <img className={classes.Items} key={itemImg.id }src={itemImg.url}/>
+         ))}
+         </div>
         <ControlPanel clicked={this.handleClick} />
        </Aux>
    );
@@ -57,6 +105,7 @@ const mapStateToProps =  state =>
   fetchedMatchId: state.heroGuesser.fetchedMatchId,
   fetchedPublicMatch: state.heroGuesser.fetchedPublicMatch,
   loading: state.heroGuesser.loading,
+  items: state.heroGuesser.items,
   error: state.heroGuesser.error,
   randomedPlayer: state.heroGuesser.randomedPlayer
   }
@@ -65,7 +114,8 @@ const mapStateToProps =  state =>
 const mapDispatchToProps = dispatch =>
 {
   return {
-    onFetchPublicMatchesInit: () => dispatch(actions.fetchPublicMatches())
+    onFetchPublicMatchesInit: () => dispatch(actions.fetchPublicMatches()),
+    onFetchItemsInit: () => dispatch(actions.fetchItems())
   }
 };
 

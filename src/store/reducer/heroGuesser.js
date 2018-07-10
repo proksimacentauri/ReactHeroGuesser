@@ -4,6 +4,7 @@ import {updateObject} from '../../shared/utility';
 const initialState = {
     fetchedHeroes: [],
     fetchedPublicMatches: [],
+    items: [],
     fetchedMatchId: null,
     fetchedPublicMatch: null,
     randomedPlayer: null,
@@ -59,6 +60,21 @@ const fetchPublicMatchSuccess = (state,action) =>
     loading: false});
 }
 
+const fetchItemsStart = (state,action) =>
+{
+ return updateObject(state,{loading: true});
+}
+
+const fetchItemsFail = (state,action) =>
+{
+ return updateObject(state,{loading: false});
+}
+
+const fetchItemsSuccess = (state,action) =>
+{
+ return updateObject(state,{items: action.items,
+    loading: false});
+}
 
 const reducer = (state = initialState, action) =>
 {
@@ -97,6 +113,18 @@ const reducer = (state = initialState, action) =>
  if(action.type === actionTypes.FETCH_PUBLIC_MATCH_FAIL)
  {
      return fetchPublicMatchFail(state,action);
+ }
+ if(action.type === actionTypes.FETCH_ITEMS_START)
+ {
+     return fetchItemsStart(state,action);
+ }
+ if(action.type === actionTypes.FETCH_ITEMS_SUCCESS)
+ {
+     return fetchItemsSuccess(state,action);
+ }
+ if(action.type === actionTypes.FETCH_ITEMS_FAIL)
+ {
+     return fetchItemsFail(state,action);
  }
 
  return state;

@@ -8,7 +8,8 @@ const guessedHero = (props) =>
   return (
    <div className={classes.Main}>
    <div>Game Duration: {props.duration}</div>
-     <img className={classes.Image} src={heroBefore}/>  
+   <img className={classes.Image} src={heroBefore}/>  
+   <div>Match Id: <a href={'https://www.opendota.com/matches/'+ props.theMatchId}>{props.theMatchId}</a></div>
    </div>
   );
 }

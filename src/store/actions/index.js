@@ -12,5 +12,10 @@ fetchPublicMatchesSuccess,
 fetchPublicMatchStart,
 fetchPublicMatchFail,
 fetchPublicMatchSuccess,
-fetchPublicMatch
+fetchPublicMatch,
+
+fetchItemsStart,
+fetchItemsSuccess,
+fetchItemsFail,
+fetchItems
 } from './heroGuesser';
