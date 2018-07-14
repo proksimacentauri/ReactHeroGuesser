@@ -1,4 +1,5 @@
 import * as actionTypes from './actionTypes';
+import { Z_ASCII } from 'zlib';
 
 
 
@@ -126,4 +127,19 @@ export const fetchItemsFail = (error) =>
       type: actionTypes.FETCH_ITEMS_FAIL,
       error: error
   };
+};
+
+
+export const gameStart = () =>
+{
+    return {
+        type: actionTypes.GAME_START
+    };
+};
+
+export const gameEnd = () =>
+{
+    return {
+        type: actionTypes.GAME_END
+    };
 };

@@ -5,26 +5,42 @@ import Aux from '../../hoc/Aux/Aux';
 import ControlPanel from '../../components/ControlPanel/ControlPanel';
 import * as actions from '../../store/actions/index';
 import items from '../../assets/JSON/items.json';
-
+import heroBefore from '../../assets/images/heroBefore.png';
 import classes from './HeroGuesser.css';
 
 export class HeroGuesser extends Component
 {
+  state = {
+    src: heroBefore,
+    heroName: ''
+  }
 
  componentDidMount()
  {
   this.props.onFetchPublicMatchesInit();
   this.props.onFetchItemsInit();
   console.log(items.itemdata);
+  this.props.onGameStart();
+
  }
 
 
 handleClick = (e) => {
 
   console.log(e.target.id);
+  
   if(e.target.id == this.props.randomedPlayer.hero_id)
   {
-   console.log('u guessed it!');
+    this.props.fetchedHeroes.map(fetchedHero => {
+    if(fetchedHero.hero_id == this.props.randomedPlayer.hero_id)
+    {
+      console.log(fetchedHero);
+      console.log(fetchedHero.img);
+      this.props.onGameEnd();
+      this.setState({src: 'http://cdn.dota2.com' + fetchedHero.img, heroName: fetchedHero.localized_name});  
+    }
+   })
+   console.log('u guessed it!', this.props.randomedPlayer.hero_id);
    //here is the winning handler :D
   }
 }
@@ -85,7 +101,8 @@ transformItemsToIcons = (data,array) =>
    console.log(this.props.fetchedPublicMatch, this.props.randomedPlayer);
    return (
        <Aux>
-         <GuessedHero duration={duration} theMatchId={this.props.fetchedMatchId}/>
+        
+         <GuessedHero gameRunning={this.props.gameGoing}   nameOfHero={this.state.heroName} show={this.state.src} duration={duration} theMatchId={this.props.fetchedMatchId}/>
          <div className={classes.itemDiv}>
          {itemImgs.map(itemImg => (
            <img className={classes.Items} key={itemImg.id }src={itemImg.url}/>
@@ -101,13 +118,15 @@ transformItemsToIcons = (data,array) =>
 const mapStateToProps =  state =>
 {
   return {
+  fetchedHeroes: state.heroGuesser.fetchedHeroes,
   fetchedPublicMatches: state.heroGuesser.fetchedPublicMatches,
   fetchedMatchId: state.heroGuesser.fetchedMatchId,
   fetchedPublicMatch: state.heroGuesser.fetchedPublicMatch,
   loading: state.heroGuesser.loading,
   items: state.heroGuesser.items,
   error: state.heroGuesser.error,
-  randomedPlayer: state.heroGuesser.randomedPlayer
+  randomedPlayer: state.heroGuesser.randomedPlayer,
+  gameGoing: state.heroGuesser.gameGoing
   }
 }
 
@@ -115,7 +134,9 @@ const mapDispatchToProps = dispatch =>
 {
   return {
     onFetchPublicMatchesInit: () => dispatch(actions.fetchPublicMatches()),
-    onFetchItemsInit: () => dispatch(actions.fetchItems())
+    onFetchItemsInit: () => dispatch(actions.fetchItems()),
+    onGameStart: () => dispatch(actions.gameStart()),
+    onGameEnd: () => dispatch(actions.gameEnd())
   }
 };
 

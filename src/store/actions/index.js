@@ -17,5 +17,8 @@ fetchPublicMatch,
 fetchItemsStart,
 fetchItemsSuccess,
 fetchItemsFail,
-fetchItems
+fetchItems,
+
+gameStart,
+gameEnd
 } from './heroGuesser';

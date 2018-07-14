@@ -18,3 +18,6 @@ export const FETCH_ITEMS_START = 'FETCH_ITEMS_START';
 export const FETCH_ITEMS_FAIL = 'FETCH_ITEMS_FAIL';
 export const FETCH_ITEMS_SUCCESS = 'FETH_ITEMS_SUCCESS';
 export const FETCH_ITEMS = 'FETCH_ITEMS';
+
+export const GAME_START = 'GAME_START';
+export const GAME_END = 'GAME_END'; 

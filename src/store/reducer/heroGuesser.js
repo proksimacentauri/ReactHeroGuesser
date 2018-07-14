@@ -8,6 +8,7 @@ const initialState = {
     fetchedMatchId: null,
     fetchedPublicMatch: null,
     randomedPlayer: null,
+    gameGoing: null,
     error: false,
     loading: false 
 };
@@ -76,6 +77,16 @@ const fetchItemsSuccess = (state,action) =>
     loading: false});
 }
 
+const gameStart = (state,action) =>
+{
+ return updateObject(state,{gameGoing: true});
+}
+
+const gameEnd  = (state,action) =>
+{
+ return updateObject(state,{gameGoing: false});
+}
+
 const reducer = (state = initialState, action) =>
 {
  if(action.type === actionTypes.FETCH_HEROES_START)
@@ -125,6 +136,14 @@ const reducer = (state = initialState, action) =>
  if(action.type === actionTypes.FETCH_ITEMS_FAIL)
  {
      return fetchItemsFail(state,action);
+ }
+ if(action.type === actionTypes.GAME_START)
+ {
+     return gameStart(state,action);
+ }
+ if(action.type === actionTypes.GAME_END)
+ {
+     return gameEnd(state,action);
  }
 
  return state;
