@@ -7,6 +7,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import {Provider} from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import heroGuesserReducer from './store/reducer/heroGuesser';
 import {watchHeroGuesser} from './store/sagas/index';
 
@@ -24,9 +25,9 @@ sagaMiddleware.run(watchHeroGuesser);
 
 const app = (
     <Provider store={store}>
-    <div>
-    <App/>
-    </div>
+   <BrowserRouter>
+    <App />
+    </BrowserRouter>
     </Provider>
 );
 
