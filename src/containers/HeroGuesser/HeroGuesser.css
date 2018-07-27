@@ -1,20 +1,19 @@
- .items 
+.Items 
  {
   position:sticky;
   margin: auto;
   z-index:10;
-  width: 20px;
   height:auto;
+  border: 5px solid rgba(0,0,0, 0.5);
   background:#35363A;
   box-shadow:0 0 15px rgba(0,0,0, 0.5);
  }
 
- .items img 
+ .Items img 
  {
   position:sticky;
   margin: auto;
   z-index:10;
-  width: 15px;
   height:auto;
   background:#35363A;
   box-shadow:0 0 15px rgba(0,0,0, 0.5);

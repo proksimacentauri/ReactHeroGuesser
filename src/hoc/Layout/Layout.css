@@ -4,8 +4,9 @@
         background-color: #192231;
         overflow: auto;
         margin: auto;
-        border-radius: 2%;
-        border: 10px #1e1f21 solid;
+       border-radius: 2%; /*
+        border: 10px #1e1f21 solid; */
+        box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.75);
           height: 60%;
           width: 80%;
       

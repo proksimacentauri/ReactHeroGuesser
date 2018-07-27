@@ -12,6 +12,6 @@
 {
     display: block;
     margin: 0 auto;
-    border: 1px green solid;
+    box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.75);
     border-radius: 1%;
 }

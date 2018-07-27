@@ -3,6 +3,9 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import classes from './ControlPanel.css';
 import * as actions from '../../store/actions/index';
+import strengthIcon from '../../assets/images/str.png';
+import agilityIcon from '../../assets/images/agi.png';
+import intelligenceIcon from '../../assets/images/int.png';
 
 class ControlPanel extends Component
 {
@@ -29,15 +32,15 @@ class ControlPanel extends Component
             {return (<img id={image.id}  onClick={this.props.clicked} className={classes.hero} key={image.id} src={'http://cdn.dota2.com/'+ image.img}/>)}})
    
    return (<div className={classes.ControlPanel}>
-    <div className={classes.strength}><p>Strength</p>
+    <div className={classes.strength}><p className={classes.icon}><img className={classes.icon} src={strengthIcon}/>Strength</p>
     {imagesStr}
     </div>
     <br/>
-    <div className={classes.agility}><p>Agility</p>
+    <div className={classes.agility}><p><img src={agilityIcon}/>Agility</p>
     {imagesAgi}
     </div>
     <br/>
-    <div className={classes.intelligence}><p>Intelligence</p>
+    <div className={classes.intelligence}><p><img src={intelligenceIcon}/>Intelligence</p>
     {imagesInt}
     </div>
     </div>

@@ -67,3 +67,8 @@
  display:inline-block;
  color:white;
 }
+
+.icon img {
+    width: auto;
+    height:20px;
+}
