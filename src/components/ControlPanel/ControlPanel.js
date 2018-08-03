@@ -32,15 +32,15 @@ class ControlPanel extends Component
             {return (<img id={image.id}  onClick={this.props.clicked} className={classes.hero} key={image.id} src={'http://cdn.dota2.com/'+ image.img}/>)}})
    
    return (<div className={classes.ControlPanel}>
-    <div className={classes.strength}><p className={classes.icon}><img className={classes.icon} src={strengthIcon}/>Strength</p>
+    <div className={classes.strength}><p className={classes.icon}><img className={classes.icon} src={strengthIcon}/> Strength</p>
     {imagesStr}
     </div>
     <br/>
-    <div className={classes.agility}><p><img src={agilityIcon}/>Agility</p>
+    <div className={classes.agility}><p className={classes.icon}><img src={agilityIcon}/> Agility</p>
     {imagesAgi}
     </div>
     <br/>
-    <div className={classes.intelligence}><p><img src={intelligenceIcon}/>Intelligence</p>
+    <div className={classes.intelligence}><p className={classes.icon}><img src={intelligenceIcon}/> Intelligence</p>
     {imagesInt}
     </div>
     </div>

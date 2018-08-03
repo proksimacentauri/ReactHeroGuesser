@@ -64,8 +64,8 @@ export function* fetchPublicMatchSaga(action,matchid)
     //console.log(url, response.data);
     const random = Math.floor((Math.random() * 10))
     const chosenPlayer = response.data.players[random];
-    //console.log( chosenPlayer);
-    yield put(actions.fetchPublicMatchSuccess(chosenPlayer,response.data));
+    console.log( chosenPlayer);
+    yield put(actions.fetchPublicMatchSuccess(chosenPlayer,random,response.data));
 }
  catch(error)
  {

@@ -5,6 +5,7 @@ const initialState = {
     fetchedHeroes: [],
     fetchedPublicMatches: [],
     items: [],
+    randomId: 0,
     fetchedMatchId: null,
     fetchedPublicMatch: null,
     randomedPlayer: null,
@@ -57,7 +58,7 @@ const fetchPublicMatchFail = (state,action) =>
 
 const fetchPublicMatchSuccess = (state,action) =>
 {
- return updateObject(state,{fetchedPublicMatch: action.fetchedPublicMatch, randomedPlayer: action.randomedPlayer,
+ return updateObject(state,{fetchedPublicMatch: action.fetchedPublicMatch, randomId: action.randomId, randomedPlayer: action.randomedPlayer,
     loading: false});
 }
 

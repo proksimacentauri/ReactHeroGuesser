@@ -5,6 +5,8 @@ import Aux from '../../hoc/Aux/Aux';
 import ControlPanel from '../../components/ControlPanel/ControlPanel';
 import * as actions from '../../store/actions/index';
 import items from '../../assets/JSON/items.json';
+import {withRouter} from 'react-router-dom';
+
 import heroBefore from '../../assets/images/heroBefore.png';
 import classes from './HeroGuesser.css';
 
@@ -22,6 +24,12 @@ export class HeroGuesser extends Component
   console.log(items.itemdata);
   this.props.onGameStart();
 
+  console.log(window.location.href);
+  if(this.props.fetchedMatchId != null)
+  {
+  const parser = "/?id=" + this.props.fetchedMatchId + "&number="+ this.props.randomedId;
+  console.log(parser);
+  }
  }
 
 
@@ -97,8 +105,10 @@ transformItemsToIcons = (data,array) =>
     console.log(arrOfItems);
     itemImgs = this.transformItemsToIcons(items.itemdata,arrOfItems);
     console.log(itemImgs);
+    console.log(this.props.fetchedMatchId, this.props.randomedId)
+
    }
-   console.log(this.props.fetchedPublicMatch, this.props.randomedPlayer);
+
    return (
        <Aux>
         
@@ -122,6 +132,7 @@ const mapStateToProps =  state =>
   fetchedPublicMatches: state.heroGuesser.fetchedPublicMatches,
   fetchedMatchId: state.heroGuesser.fetchedMatchId,
   fetchedPublicMatch: state.heroGuesser.fetchedPublicMatch,
+  randomedId: state.heroGuesser.randomId,
   loading: state.heroGuesser.loading,
   items: state.heroGuesser.items,
   error: state.heroGuesser.error,
@@ -140,4 +151,4 @@ const mapDispatchToProps = dispatch =>
   }
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(HeroGuesser);
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(HeroGuesser));

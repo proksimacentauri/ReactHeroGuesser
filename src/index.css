@@ -6,3 +6,16 @@ body {
   background-color: #192231;
   font-family: 'Open Sans', sans-serif;
 }
+
+
+@media (min-width: 601px) {
+  body {
+    overflow: auto;
+    margin-top:50px;
+    background: url(./assets/images/bgimg.png);
+    background-color: #192231;
+    
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  }

@@ -14,5 +14,5 @@ export function* watchHeroGuesser()
     yield call(fetchPublicMatchesSaga) // waits for the fetchPosts task to terminate
  }*/
 
- yield takeLatest(actionTypes.FETCH_PUBLIC_MATCH, fetchPublicMatchSaga);
+ yield takeEvery(actionTypes.FETCH_PUBLIC_MATCH, fetchPublicMatchSaga);
 }

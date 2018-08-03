@@ -1,7 +1,4 @@
 import * as actionTypes from './actionTypes';
-import { Z_ASCII } from 'zlib';
-
-
 
 export const fetchHeroes = () =>
 {
@@ -79,11 +76,12 @@ export const fetchPublicMatchStart = () =>
     };
 };
 
-export const fetchPublicMatchSuccess = (randomedPlayer,fetchedPublicMatch) =>
+export const fetchPublicMatchSuccess = (randomedPlayer,randomId, fetchedPublicMatch) =>
 {
   return {
       type: actionTypes.FETCH_PUBLIC_MATCH_SUCCESS,
       fetchedPublicMatch: fetchedPublicMatch,
+      randomId: randomId,
       randomedPlayer: randomedPlayer
   };
 };

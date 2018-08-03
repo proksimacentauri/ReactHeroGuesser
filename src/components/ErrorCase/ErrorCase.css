@@ -1,0 +1,13 @@
+.ErrorPage
+{
+    color: white;
+    text-align: center;
+    font-size: 34px;
+}
+
+
+.ErrorPage img
+{
+ height: 250px;
+ width: auto;
+}

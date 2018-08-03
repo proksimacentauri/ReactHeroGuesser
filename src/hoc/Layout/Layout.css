@@ -1,13 +1,33 @@
+
+@media (min-width: 601px) {
+    .Content {
+        /*background-color: rgb(95, 172, 208);*/
+        background-color: #192231;
+        margin: auto;
+        
+       border-radius: 1%; /*
+        border: 10px #1e1f21 solid; */
+        box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.75);
+          height: 700px;
+          width: auto;
+          overflow: auto;
+      }
+
+}
+
+@media (max-width: 1025px) {
 .Content 
 {
  /*margin-top:50px;*/
         background-color: #192231;
-        overflow: auto;
         margin: auto;
-       border-radius: 2%; /*
+        padding: 10px;
+       border-radius: 1%; /*
         border: 10px #1e1f21 solid; */
         box-shadow: 10px 10px 24px 0px rgba(0,0,0,0.75);
-          height: 60%;
-          width: 80%;
-      
+        overflow: auto;
+        height: 900px;
+        width: auto;
+}
+
 }

@@ -3,10 +3,6 @@ import classes from './GuessedHero.css';
 
 const guessedHero = (props) =>
 {
-  if(props.gameRunning)
-  {
-
-  }
   
   return (
    <div className={classes.Main}>
