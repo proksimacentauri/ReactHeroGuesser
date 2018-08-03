@@ -11,19 +11,22 @@ class App extends Component {
   render() {
     let routes = (
       <Switch>
-       <Route path='' component={HeroGuesser}/>
+       <Route />
        </Switch>
      );
      
-     if(this.props.fetchedMatchId != null && this.props.randomedId != null)
+     if(this.props.fetchedMatchId != null && this.props.randomedPlayer != null )
      {
+       console.log(this.props.randomedId)
       const parser = "/?id=" + this.props.fetchedMatchId + "&number="+ this.props.randomedId;
+      this.props.history.push(parser);
      }
  
     return (
       <div className="App">
       <Layout>
       {routes}
+      <HeroGuesser/>
       </Layout>
       </div>
     );
@@ -37,6 +40,7 @@ const mapStateToProps =  state =>
   randomedId: state.heroGuesser.randomId,
   loading: state.heroGuesser.loading,
   error: state.heroGuesser.error,
+  randomedPlayer: state.heroGuesser.randomedPlayer,
   gameGoing: state.heroGuesser.gameGoing
   }
 }
