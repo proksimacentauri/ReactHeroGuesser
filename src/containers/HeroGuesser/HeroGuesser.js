@@ -10,6 +10,7 @@ import {withRouter} from 'react-router-dom';
 import heroBefore from '../../assets/images/heroBefore.png';
 import classes from './HeroGuesser.css';
 
+
 export class HeroGuesser extends Component
 {
   state = {
@@ -51,6 +52,13 @@ handleClick = (e) => {
    console.log('u guessed it!', this.props.randomedPlayer.hero_id);
    //here is the winning handler :D
   }
+}
+
+restartGameHandler = () =>
+{
+  this.props.onGameRestart();
+  this.props.onFetchPublicMatchesInit();
+  this.setState({src: heroBefore, heroName: ''});  
 }
 
 transformItemsToIcons = (data,array) =>
@@ -111,8 +119,8 @@ transformItemsToIcons = (data,array) =>
 
    return (
        <Aux>
-        
-         <GuessedHero gameRunning={this.props.gameGoing}   nameOfHero={this.state.heroName} show={this.state.src} duration={duration} theMatchId={this.props.fetchedMatchId}/>
+         <button onClick={this.restartGameHandler}>hello hello</button>
+         <GuessedHero gameRunning={this.props.gameGoing}  nameOfHero={this.state.heroName} show={this.state.src} duration={duration} theMatchId={this.props.fetchedMatchId}/>
          <div className={classes.itemDiv}>
          {itemImgs.map(itemImg => (
            <img className={classes.Items} key={itemImg.id }src={itemImg.url}/>
@@ -147,7 +155,8 @@ const mapDispatchToProps = dispatch =>
     onFetchPublicMatchesInit: () => dispatch(actions.fetchPublicMatches()),
     onFetchItemsInit: () => dispatch(actions.fetchItems()),
     onGameStart: () => dispatch(actions.gameStart()),
-    onGameEnd: () => dispatch(actions.gameEnd())
+    onGameEnd: () => dispatch(actions.gameEnd()),
+    onGameRestart: () => dispatch(actions.newGame())
   }
 };
 

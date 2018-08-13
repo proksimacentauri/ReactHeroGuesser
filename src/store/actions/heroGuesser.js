@@ -141,3 +141,11 @@ export const gameEnd = () =>
         type: actionTypes.GAME_END
     };
 };
+
+export const newGame = () =>
+{
+ return {
+     type: actionTypes.NEW_GAME,
+     gameGoing: true
+ };
+}

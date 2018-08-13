@@ -10,7 +10,7 @@ const toolbar = (props) => (
 <div></div>
 </div>
 <nav className={classes.DesktopOnly}>
-<NavigationItems/>  
+<NavigationItems parser={props.parsed}/>  
 </nav> 
 </header>
 );

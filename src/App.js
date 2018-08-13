@@ -9,18 +9,23 @@ import {connect} from 'react-redux';
 class App extends Component {
   
   render() {
-    let routes = (
-      <Switch>
-       <Route />
-       </Switch>
-     );
+    let parser = "";
      
      if(this.props.fetchedMatchId != null && this.props.randomedPlayer != null )
      {
+       console.log(parser);
        console.log(this.props.randomedId)
-      const parser = "/?id=" + this.props.fetchedMatchId + "&number="+ this.props.randomedId;
+       parser = "/?id=" + this.props.fetchedMatchId + "&number="+ this.props.randomedId;
       this.props.history.push(parser);
+      console.log(parser);
      }
+
+     let routes = (
+      <Switch>
+       <Route path={parser}/>
+       <Route path='/dongers'/>
+       </Switch>
+     );
  
     return (
       <div className="App">
@@ -45,11 +50,5 @@ const mapStateToProps =  state =>
   }
 }
 
-const mapDispatchToProps = dispatch =>
-{
-  return {
-    
-  }
-};
 
 export default connect(mapStateToProps,null)(withRouter(App));

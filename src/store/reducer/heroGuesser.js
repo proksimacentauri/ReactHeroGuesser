@@ -88,6 +88,11 @@ const gameEnd  = (state,action) =>
  return updateObject(state,{gameGoing: false});
 }
 
+const newGame = (state,action) =>
+{
+ return updateObject(state,{gameGoing: true});
+}
+
 const reducer = (state = initialState, action) =>
 {
  if(action.type === actionTypes.FETCH_HEROES_START)
@@ -145,6 +150,10 @@ const reducer = (state = initialState, action) =>
  if(action.type === actionTypes.GAME_END)
  {
      return gameEnd(state,action);
+ }
+ if(action.type === actionTypes.NEW_GAME)
+ {
+  return newGame(state,action);
  }
 
  return state;

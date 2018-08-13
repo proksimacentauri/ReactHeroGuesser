@@ -21,3 +21,4 @@ export const FETCH_ITEMS = 'FETCH_ITEMS';
 
 export const GAME_START = 'GAME_START';
 export const GAME_END = 'GAME_END'; 
+export const NEW_GAME = 'NEW_GAME';

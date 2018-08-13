@@ -20,5 +20,6 @@ fetchItemsFail,
 fetchItems,
 
 gameStart,
-gameEnd
+gameEnd,
+newGame
 } from './heroGuesser';
