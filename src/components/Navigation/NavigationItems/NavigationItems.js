@@ -6,12 +6,16 @@ import {connect} from 'react-redux';
 
 class NavigationItems extends Component
 {
- 
+  state = {
+   toolbarUrl: ''
+  }
+
+
  render ()
  {
  return (
  <ul className={classes.NavigationItems}>
- <NavigationItem link=''>Hero Guesser</NavigationItem>
+ <NavigationItem link={this.props.gameId}>Hero Guesser</NavigationItem>
  <NavigationItem link='/dongers'> dongers</NavigationItem>
  </ul>
  );
@@ -25,7 +29,8 @@ const mapStateToProps =  state =>
   loading: state.heroGuesser.loading,
   error: state.heroGuesser.error,
   randomedPlayer: state.heroGuesser.randomedPlayer,
-  gameGoing: state.heroGuesser.gameGoing
+  gameGoing: state.heroGuesser.gameGoing,
+  gameId: state.heroGuesser.gameId
   }
 }
 

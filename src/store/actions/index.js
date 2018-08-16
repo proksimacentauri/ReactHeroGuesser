@@ -21,5 +21,7 @@ fetchItems,
 
 gameStart,
 gameEnd,
-newGame
+newGame,
+
+getGameUrlSuccess
 } from './heroGuesser';

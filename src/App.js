@@ -13,16 +13,15 @@ class App extends Component {
      
      if(this.props.fetchedMatchId != null && this.props.randomedPlayer != null )
      {
-       console.log(parser);
-       console.log(this.props.randomedId)
-       parser = "/?id=" + this.props.fetchedMatchId + "&number="+ this.props.randomedId;
-      this.props.history.push(parser);
-      console.log(parser);
+       console.log(this.props.gameId);
+
+      this.props.history.push(this.props.gameId);
+
      }
 
      let routes = (
       <Switch>
-       <Route path={parser}/>
+       <Route path={this.props.gameId}/>
        <Route path='/dongers'/>
        </Switch>
      );
@@ -46,7 +45,8 @@ const mapStateToProps =  state =>
   loading: state.heroGuesser.loading,
   error: state.heroGuesser.error,
   randomedPlayer: state.heroGuesser.randomedPlayer,
-  gameGoing: state.heroGuesser.gameGoing
+  gameGoing: state.heroGuesser.gameGoing,
+  gameId: state.heroGuesser.gameId
   }
 }
 

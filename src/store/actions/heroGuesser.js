@@ -149,3 +149,11 @@ export const newGame = () =>
      gameGoing: true
  };
 }
+
+export const getGameUrlSuccess = (gameId) =>
+{
+ return {
+  type: actionTypes.GAME_URL_SUCCESS,
+  gameId:gameId
+ };
+}

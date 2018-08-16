@@ -11,6 +11,7 @@ const initialState = {
     randomedPlayer: null,
     gameGoing: null,
     error: false,
+    gameId: '',
     loading: false 
 };
 
@@ -93,6 +94,11 @@ const newGame = (state,action) =>
  return updateObject(state,{gameGoing: true});
 }
 
+const getGameUrlSuccess = (state,action) =>
+{
+ return updateObject(state,{gameId: action.gameId});
+}
+
 const reducer = (state = initialState, action) =>
 {
  if(action.type === actionTypes.FETCH_HEROES_START)
@@ -155,7 +161,10 @@ const reducer = (state = initialState, action) =>
  {
   return newGame(state,action);
  }
-
+ if(action.type === actionTypes.GAME_URL_SUCCESS)
+ {
+  return getGameUrlSuccess(state,action);
+ }
  return state;
 }
 
