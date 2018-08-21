@@ -157,3 +157,37 @@ export const getGameUrlSuccess = (gameId) =>
   gameId:gameId
  };
 }
+
+
+export const fetchUrlMatchStart = () =>
+{
+    return {
+        type: actionTypes.FETCH_URL_MATCH_START,
+    };
+};
+
+export const fetchUrlMatchSuccess = (randomedPlayer,randomId, fetchedPublicMatch) =>
+{
+  return {
+    type: actionTypes.FETCH_URL_MATCH_SUCCESS,
+    fetchedPublicMatch: fetchedPublicMatch,
+    randomId: randomId,
+    randomedPlayer: randomedPlayer
+  };
+};
+
+
+export const fetchUrlMatchFail = (error) =>
+{
+  return {
+      type: actionTypes.FETCH_URL_MATCH_FAIL,
+      error: error
+  };
+};
+
+export const fetchUrlMatch = () =>
+{
+    return {
+        type: actionTypes.FETCH_URL_MATCH
+    };
+};

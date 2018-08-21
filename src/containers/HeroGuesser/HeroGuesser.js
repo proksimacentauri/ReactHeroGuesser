@@ -15,17 +15,32 @@ export class HeroGuesser extends Component
 {
   state = {
     src: heroBefore,
-    heroName: ''
+    heroName: '',
+    check: true
+  }
+
+  componentWillMount()
+  {
+    if(window.location.search != "" && this.props.fetchedMatchId == null)
+    { 
+      this.props.onfetchUrlMatch();
+      this.props.onGameStart();
+      console.log('hi')
+    }  
   }
 
  componentDidMount()
  {
-  this.props.onFetchPublicMatchesInit();
-  this.props.onFetchItemsInit();
-  console.log(items.itemdata);
-  this.props.onGameStart();
 
+if(window.location.search == "" && this.props.gameGoing == null) { 
+    this.props.onFetchPublicMatchesInit();
+    this.props.onFetchItemsInit();
+    console.log(items.itemdata);
+    console.log('beep beep im a tucan');
+    this.props.onGameStart();
+    }
   console.log(window.location.href);
+ 
   if(this.props.fetchedMatchId != null)
   {
   const parser = "/?id=" + this.props.fetchedMatchId + "&number="+ this.props.randomedId;
@@ -145,6 +160,7 @@ const mapStateToProps =  state =>
   items: state.heroGuesser.items,
   error: state.heroGuesser.error,
   randomedPlayer: state.heroGuesser.randomedPlayer,
+  gameId: state.heroGuesser.gameId,
   gameGoing: state.heroGuesser.gameGoing
   }
 }
@@ -152,6 +168,7 @@ const mapStateToProps =  state =>
 const mapDispatchToProps = dispatch =>
 {
   return {
+    onfetchUrlMatch: () => dispatch(actions.fetchUrlMatch()),
     onFetchPublicMatchesInit: () => dispatch(actions.fetchPublicMatches()),
     onFetchItemsInit: () => dispatch(actions.fetchItems()),
     onGameStart: () => dispatch(actions.gameStart()),

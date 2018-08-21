@@ -23,5 +23,10 @@ gameStart,
 gameEnd,
 newGame,
 
-getGameUrlSuccess
+getGameUrlSuccess,
+
+fetchUrlMatchStart,
+fetchUrlMatchFail,
+fetchUrlMatchSuccess,
+fetchUrlMatch
 } from './heroGuesser';

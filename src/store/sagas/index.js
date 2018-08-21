@@ -1,5 +1,5 @@
 import {takeEvery, all, takeLatest,take,call} from 'redux-saga/effects';
-import { fetchHeroesSaga, fetchPublicMatchesSaga, fetchPublicMatchSaga,fetchItemsSaga} from './heroGuesser';
+import { fetchHeroesSaga, fetchPublicMatchesSaga, fetchPublicMatchSaga,fetchItemsSaga,fetchUrlMatchSaga} from './heroGuesser';
 import * as actionTypes from '../actions/actionTypes';
 
 
@@ -13,6 +13,6 @@ export function* watchHeroGuesser()
  while (yield take(actionTypes.FETCH_PUBLIC_MATCHES)) {
     yield call(fetchPublicMatchesSaga) // waits for the fetchPosts task to terminate
  }*/
-
+ yield takeEvery(actionTypes.FETCH_URL_MATCH, fetchUrlMatchSaga);
  yield takeEvery(actionTypes.FETCH_PUBLIC_MATCH, fetchPublicMatchSaga);
 }

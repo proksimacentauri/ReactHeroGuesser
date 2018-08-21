@@ -53,6 +53,36 @@ export function* fetchPublicMatchesSaga(action)
  }
 }
 
+export function* fetchUrlMatchSaga(action)
+{
+yield put(actions.fetchUrlMatchStart());
+ try {
+    console.log(window.location.search);
+    const urlObject = new URL(window.location.href);
+    const urlSearch = urlObject.search;
+     const  arrayofsearch = urlSearch.split("&");
+    const stringofSearch = arrayofsearch.join("");
+    console.log(urlSearch);
+    console.log("hello"+ stringofSearch.length);
+
+ arrayofsearch[0] = arrayofsearch[0].replace(/\D+/g, '');
+ arrayofsearch[1] = arrayofsearch[1].replace(/\D+/g, '');
+ const matchId = arrayofsearch[0] ;
+ const personId =arrayofsearch[1];
+    const url = "https://api.opendota.com/api/matches/" + matchId;
+    const response = yield axios.get(url);
+    const chosenPlayer = response.data.players[personId];
+    console.log(chosenPlayer,url);
+    const gameId = "/?id=" + matchId + "&number="+ personId;
+    yield put(actions.getGameUrlSuccess(gameId));
+    yield put(actions.fetchUrlMatchSuccess(chosenPlayer,personId,response.data));
+
+ }
+ catch(error)
+ {
+   yield put(actions.fetchUrlMatchFail(error));
+ }
+}
 
 export function* fetchPublicMatchSaga(action,matchid)
 {

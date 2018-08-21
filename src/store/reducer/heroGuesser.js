@@ -99,6 +99,22 @@ const getGameUrlSuccess = (state,action) =>
  return updateObject(state,{gameId: action.gameId});
 }
 
+const fetchUrlMatchStart = (state,action) =>
+{
+ return updateObject(state,{loading: true});
+}
+
+const fetchUrlMatchFail = (state,action) =>
+{
+ return updateObject(state,{loading: false});
+}
+
+const fetchUrlMatchSuccess = (state,action) =>
+{
+ return updateObject(state,{fetchedPublicMatch: action.fetchedPublicMatch, randomId: action.randomId, randomedPlayer: action.randomedPlayer,
+    loading: false});
+}
+
 const reducer = (state = initialState, action) =>
 {
  if(action.type === actionTypes.FETCH_HEROES_START)
@@ -164,6 +180,18 @@ const reducer = (state = initialState, action) =>
  if(action.type === actionTypes.GAME_URL_SUCCESS)
  {
   return getGameUrlSuccess(state,action);
+ }
+ if(action.type === actionTypes.FETCH_URL_MATCH_START)
+ {
+     return fetchUrlMatchStart(state,action);
+ }
+ if(action.type === actionTypes.FETCH_URL_MATCH_SUCCESS)
+ {
+     return fetchUrlMatchSuccess(state,action);
+ }
+ if(action.type === actionTypes.FETCH_URL_MATCH_FAIL)
+ {
+     return fetchUrlMatchFail(state,action);
  }
  return state;
 }
